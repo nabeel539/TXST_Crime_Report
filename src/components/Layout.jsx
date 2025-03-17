@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
-import { Navbar } from "./Shared/MainNav";
+import Footer from "./Shared/Footer";
+import Navbar from "./Shared/MainNav";
 
 const Layout = () => {
   return (
@@ -12,11 +13,7 @@ const Layout = () => {
       <main className="flex-1">
         <Outlet />
       </main>
-      <footer className="py-6 bg-white dark:bg-crime-800 border-t border-crime-100 dark:border-crime-700">
-        <div className="container mx-auto px-4 text-center text-sm text-crime-500 dark:text-crime-400">
-          <p>© 2025 Crime Record Management System</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };

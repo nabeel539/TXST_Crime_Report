@@ -6,6 +6,7 @@ import Layout from "./components/Layout";
 import { UserDashboard } from "./pages/UserDashboard";
 import { AdminDashboard } from "./pages/AdminDashboard";
 import AuthPage from "./pages/AuthPage";
+import TestsPage from "./pages/BrowseTestPage";
 
 function App() {
   return (
@@ -31,14 +32,12 @@ function App() {
         {/* Public Routes */}
         <Route element={<Layout />}>
           <Route path="/" element={<LandingPage />} />
+          <Route path="/test" element={<TestsPage />} />
+          <Route path="/test/:id" element={<LandingPage />} />
           <Route path="/auth" element={<AuthPage />} />
           <Route path="*" element={<h1>404 Not Found</h1>} />
           <Route path="/user/dashboard" element={<UserDashboard />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
-          {/* <Route path="/events" element={<EventsPage />} />
-          <Route path="/events/:id" element={<EventDetailsPage />} />
-          <Route path="/hotels" element={<HotelsPage />} />
-          <Route path="/hotels/:id" element={<HotelDetailsPage />} /> */}
         </Route>
       </Routes>
     </Router>
