@@ -24,9 +24,28 @@ import {
   UserCheck,
   Shield,
   BarChart3,
+  LogOut,
 } from "lucide-react";
+import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export function UserDashboard() {
+  const { user, logout, loading } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // If not loading and no user, redirect to login
+    if (!loading && !user) {
+      navigate("/auth");
+    }
+  }, [user, loading, navigate]);
+
+  const handleLogout = async () => {
+    await logout();
+    navigate("/auth");
+  };
+
   // Dummy data for cases
   const cases = [
     {
@@ -52,6 +71,15 @@ export function UserDashboard() {
     },
   ];
 
+  // If still loading or no user, you could show a loading state
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        Loading...
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 p-6">
       {/* Header */}
@@ -70,6 +98,10 @@ export function UserDashboard() {
           <Button>
             <UserCheck className="w-4 h-4 mr-2" />
             Profile
+          </Button>
+          <Button variant="destructive" onClick={handleLogout}>
+            <LogOut className="w-4 h-4 mr-2" />
+            Logout
           </Button>
         </div>
       </div>

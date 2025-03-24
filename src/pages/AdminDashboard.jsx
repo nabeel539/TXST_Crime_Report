@@ -23,9 +23,28 @@ import {
   BarChart3,
   Users,
   Settings,
+  LogOut,
 } from "lucide-react";
+import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export function AdminDashboard() {
+  const { user, logout, loading } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // If not loading and no user, redirect to login
+    if (!loading && !user) {
+      navigate("/auth");
+    }
+  }, [user, loading, navigate]);
+
+  const handleLogout = async () => {
+    await logout();
+    navigate("/auth");
+  };
+
   // Dummy data for users
   const users = [
     {
@@ -94,6 +113,10 @@ export function AdminDashboard() {
           <Button>
             <Settings className="w-4 h-4 mr-2" />
             Settings
+          </Button>
+          <Button variant="outline" onClick={handleLogout}>
+            <LogOut className="w-4 h-4 mr-2" />
+            Logout
           </Button>
         </div>
       </div>
