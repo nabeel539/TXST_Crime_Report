@@ -46,6 +46,8 @@ function App() {
         {/* Public Routes */}
         <Route element={<Layout />}>
           <Route path="/" element={<LandingPage />} />
+          <Route path="/test" element={<TestsPage />} />
+          <Route path="/test/:id" element={<LandingPage />} />
           <Route path="/auth" element={<AuthPage />} />
 
           {/* Protected Routes */}
